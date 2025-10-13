@@ -1,0 +1,45 @@
+{
+    "GAMBAR": [
+        ".jpeg",
+        ".jpg",
+        ".png",
+        ".gif",
+        ".svg",
+        ".bmp",
+        ".tiff"
+    ],
+    "VIDEO": [
+        ".mp4",
+        ".mkv",
+        ".mov",
+        ".avi",
+        ".flv",
+        ".wmv"
+    ],
+    "DOKUMEN": [
+        ".pdf",
+        ".docx",
+        ".xlsx",
+        ".pptx",
+        ".txt",
+        ".csv",
+        ".rtf"
+    ],
+    "ARSIP": [
+        ".zip",
+        ".rar",
+        ".7z",
+        ".tar",
+        ".gz"
+    ],
+    "MUSIK": [
+        ".mp3",
+        ".wav",
+        ".aac",
+        ".flac"
+    ],
+    "APLIKASI": [
+        ".exe",
+        ".msi"
+    ]
+}
