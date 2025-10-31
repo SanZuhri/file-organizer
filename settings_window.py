@@ -8,7 +8,7 @@ class SettingsWindow(ctk.CTkToplevel):
     def __init__(self, parent, rules):
         super().__init__(parent)
         self.title("Pengaturan Aturan Kustom")
-        self.geometry("600x500")
+        self.geometry("550x450")
         self.transient(parent)
         self.grab_set()
         
@@ -35,7 +35,7 @@ class SettingsWindow(ctk.CTkToplevel):
 
         # --- Widget ---
         frame = ctk.CTkFrame(self)
-        frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
+        frame.grid(row=0, column=0, padx=15, pady=15, sticky="nsew")
         frame.grid_columnconfigure((0, 1), weight=1)
 
         # Treeview untuk menampilkan aturan
@@ -43,24 +43,24 @@ class SettingsWindow(ctk.CTkToplevel):
         self.tree = ttk.Treeview(frame, columns=columns, show="headings", height=10, style="Treeview")
         self.tree.heading("kategori", text="Nama Kategori")
         self.tree.heading("ekstensi", text="Ekstensi (dipisah koma)")
-        self.tree.grid(row=0, column=0, columnspan=2, padx=10, pady=10, sticky="nsew")
+        self.tree.grid(row=0, column=0, columnspan=2, padx=8, pady=8, sticky="nsew")
         self.populate_tree()
         
         # Form untuk menambah/mengedit
         self.category_var = ctk.StringVar()
-        ctk.CTkEntry(frame, textvariable=self.category_var, placeholder_text="NAMA KATEGORI").grid(row=1, column=0, padx=(10,5), pady=10, sticky="we")
-        
+        ctk.CTkEntry(frame, textvariable=self.category_var, placeholder_text="NAMA KATEGORI").grid(row=1, column=0, padx=(8,4), pady=8, sticky="we")
+
         self.extensions_var = ctk.StringVar()
-        ctk.CTkEntry(frame, textvariable=self.extensions_var, placeholder_text=".jpg, .png, .gif").grid(row=1, column=1, padx=(5,10), pady=10, sticky="we")
+        ctk.CTkEntry(frame, textvariable=self.extensions_var, placeholder_text=".jpg, .png, .gif").grid(row=1, column=1, padx=(4,8), pady=8, sticky="we")
         
         # Tombol Aksi
         btn_frame = ctk.CTkFrame(frame, fg_color="transparent")
-        btn_frame.grid(row=2, column=0, columnspan=2, pady=10)
-        ctk.CTkButton(btn_frame, text="Tambah/Update", command=self.add_or_update_rule).pack(side="left", padx=5)
-        ctk.CTkButton(btn_frame, text="Hapus Terpilih", command=self.delete_rule, fg_color="#D32F2F", hover_color="#B71C1C").pack(side="left", padx=5)
-        
+        btn_frame.grid(row=2, column=0, columnspan=2, pady=8)
+        ctk.CTkButton(btn_frame, text="Tambah/Update", command=self.add_or_update_rule).pack(side="left", padx=4)
+        ctk.CTkButton(btn_frame, text="Hapus Terpilih", command=self.delete_rule, fg_color="#D32F2F", hover_color="#B71C1C").pack(side="left", padx=4)
+
         # Tombol Simpan & Tutup
-        ctk.CTkButton(frame, text="Simpan dan Tutup", command=self.save_and_close, fg_color="#4CAF50", hover_color="#388E3C").grid(row=3, column=0, columnspan=2, pady=10, ipady=5)
+        ctk.CTkButton(frame, text="Simpan dan Tutup", command=self.save_and_close, fg_color="#4CAF50", hover_color="#388E3C").grid(row=3, column=0, columnspan=2, pady=8, ipady=4)
         
         self.tree.bind("<<TreeviewSelect>>", self.on_item_select)
     

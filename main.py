@@ -11,57 +11,57 @@ from settings_window import SettingsWindow
 from preview_window import PreviewWindow
 
 ctk.set_appearance_mode("System")
-ctk.set_default_color_theme("blue")
+ctk.set_default_color_theme("green")
 
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
         
-        self.title("File Organizer Pro"); self.geometry("700x550"); self.resizable(False, False)
+        self.title("File Organizer Pro"); self.geometry("650x500"); self.resizable(False, False)
         self.rules = {}; self.load_rules()
         
         self.grid_columnconfigure(0, weight=1); self.grid_rowconfigure(5, weight=1)
 
         main_frame = ctk.CTkFrame(self, fg_color="transparent")
-        main_frame.grid(row=0, column=0, rowspan=5, padx=25, pady=20, sticky="nsew")
+        main_frame.grid(row=0, column=0, rowspan=5, padx=15, pady=15, sticky="nsew")
         
         # --- PERBAIKAN: Konfigurasi grid agar kolom 0 melebar, kolom 1 tidak ---
         main_frame.grid_columnconfigure(0, weight=1)
         main_frame.grid_columnconfigure(1, weight=0)
 
         # Tombol-tombol utama
-        self.btn_organize = ctk.CTkButton(main_frame, text="PRATINJAU & RAPİKAN", command=self.run_organization, height=50, font=ctk.CTkFont(size=14, weight="bold"))
-        self.btn_organize.grid(row=3, column=0, columnspan=2, pady=10, sticky="we")
+        self.btn_organize = ctk.CTkButton(main_frame, text="PRATINJAU & RAPİKAN", command=self.run_organization, height=40, font=ctk.CTkFont(size=12, weight="bold"))
+        self.btn_organize.grid(row=3, column=0, columnspan=2, pady=8, sticky="we")
         
         self.btn_undo = ctk.CTkButton(main_frame, text="Batalkan Aksi Terakhir (Undo)", command=self.run_undo, fg_color="#F44336", hover_color="#D32F2F")
-        self.btn_undo.grid(row=4, column=0, pady=5, sticky="we")
+        self.btn_undo.grid(row=4, column=0, pady=4, sticky="we")
 
         self.btn_settings = ctk.CTkButton(main_frame, text="Pengaturan Aturan", command=self.open_settings_window, fg_color="gray", hover_color="#555555")
-        self.btn_settings.grid(row=4, column=1, padx=(10,0), pady=5, sticky="we")
+        self.btn_settings.grid(row=4, column=1, padx=(8,0), pady=4, sticky="we")
 
         # Widget lainnya...
-        ctk.CTkLabel(main_frame, text="Folder untuk Dirapikan", font=ctk.CTkFont(size=16, weight="bold")).grid(row=0, column=0, columnspan=2, sticky="w")
-        
+        ctk.CTkLabel(main_frame, text="Folder untuk Dirapikan", font=ctk.CTkFont(size=14, weight="bold")).grid(row=0, column=0, columnspan=2, sticky="w")
+
         self.target_directory = ctk.StringVar()
-        
+
         # --- PERBAIKAN: Entry sekarang hanya di kolom 0 ---
-        entry = ctk.CTkEntry(main_frame, textvariable=self.target_directory, state="readonly", height=35)
-        entry.grid(row=1, column=0, pady=10, sticky="we") # Dulu: columnspan=2
-        
+        entry = ctk.CTkEntry(main_frame, textvariable=self.target_directory, state="readonly", height=32)
+        entry.grid(row=1, column=0, pady=8, sticky="we") # Dulu: columnspan=2
+
         # --- PERBAIKAN: Tombol "Pilih Folder" dikembalikan ke kolom 1 ---
-        self.btn_select = ctk.CTkButton(main_frame, text="Pilih Folder...", command=self.select_folder, width=120, height=35)
-        self.btn_select.grid(row=1, column=1, padx=(10, 0))
+        self.btn_select = ctk.CTkButton(main_frame, text="Pilih Folder...", command=self.select_folder, width=110, height=32)
+        self.btn_select.grid(row=1, column=1, padx=(8, 0))
 
         self.recursive_var = ctk.BooleanVar(value=False)
         recursive_check = ctk.CTkCheckBox(main_frame, text="Jelajahi semua sub-folder (Rekursif)", variable=self.recursive_var)
-        recursive_check.grid(row=2, column=0, columnspan=2, pady=10, sticky="w")
+        recursive_check.grid(row=2, column=0, columnspan=2, pady=8, sticky="w")
         
         self.progress_bar = ctk.CTkProgressBar(self, mode='determinate')
         self.progress_bar.set(0)
-        self.progress_bar.grid(row=5, column=0, padx=25, pady=5, sticky="ew")
+        self.progress_bar.grid(row=5, column=0, padx=15, pady=4, sticky="ew")
 
-        self.log_box = ctk.CTkTextbox(self, height=150, state="disabled", text_color="cyan")
-        self.log_box.grid(row=6, column=0, padx=25, pady=(0,20), sticky="nsew")
+        self.log_box = ctk.CTkTextbox(self, height=140, state="disabled", text_color="cyan")
+        self.log_box.grid(row=6, column=0, padx=15, pady=(0,15), sticky="nsew")
 
         self.check_undo_availability() # Cek saat startup apakah ada aksi yang bisa di-undo
 

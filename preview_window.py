@@ -8,7 +8,7 @@ class PreviewWindow(ctk.CTkToplevel):
     def __init__(self, parent, planned_moves):
         super().__init__(parent)
         self.title(f"Pratinjau Aksi: {len(planned_moves)} File Akan Dipindah")
-        self.geometry("800x600")
+        self.geometry("700x550")
         self.transient(parent)
         self.grab_set()
         
@@ -28,7 +28,7 @@ class PreviewWindow(ctk.CTkToplevel):
         self.grid_rowconfigure(0, weight=1)
 
         frame = ctk.CTkFrame(self)
-        frame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
+        frame.grid(row=0, column=0, padx=15, pady=15, sticky="nsew")
         frame.grid_columnconfigure(0, weight=1)
         frame.grid_rowconfigure(0, weight=1)
         
@@ -44,10 +44,10 @@ class PreviewWindow(ctk.CTkToplevel):
 
         # Tombol Aksi
         btn_frame = ctk.CTkFrame(self, fg_color="transparent")
-        btn_frame.grid(row=1, column=0, padx=20, pady=10)
+        btn_frame.grid(row=1, column=0, padx=15, pady=8)
         
-        ctk.CTkButton(btn_frame, text="Batal", command=self.cancel, width=120, height=35, fg_color="gray", hover_color="#555555").pack(side="left", padx=10)
-        ctk.CTkButton(btn_frame, text="Lanjutkan Proses", command=self.proceed, width=150, height=35, fg_color="#4CAF50", hover_color="#388E3C").pack(side="left", padx=10)
+        ctk.CTkButton(btn_frame, text="Batal", command=self.cancel, width=110, height=32, fg_color="gray", hover_color="#555555").pack(side="left", padx=8)
+        ctk.CTkButton(btn_frame, text="Lanjutkan Proses", command=self.proceed, width=140, height=32, fg_color="#4CAF50", hover_color="#388E3C").pack(side="left", padx=8)
 
     def populate_tree(self):
         """Mengisi Treeview dengan data dari planned_moves."""
